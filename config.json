@@ -1,0 +1,5 @@
+{
+    "service": "generalTemp",
+    "stage": "dev",
+    "region": "ap-northeast-1" 
+}
