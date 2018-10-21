@@ -1,14 +1,8 @@
-# Readme
+# Survey LAMBDA Performance
 
-```
-git init
+Lambda performance (computation power and network I/O) depends on memory-size.
 
-npm init --force
-npm install --save-dev aws-sdk
+In this repository, I researched AWS Lambda performance.
 
-terraform init
-
-sls deploy
-terraform apply -var-file=config.json
-
-```
+- nodejs
+- 
