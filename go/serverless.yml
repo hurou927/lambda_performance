@@ -1,0 +1,56 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: ${file(../config.json):service}GOLANG # NOTE: update this with your service name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+# frameworkVersion: "=X.X.X"
+frameworkVersion: ">=1.28.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: go1.x
+  region: ${file(../config.json):region}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:*"
+        - "logs:*"
+        - "dynamodb:*"
+      Resource: '*'
+
+custom:
+  stage: ${file(../config.json):stage}
+  timeout: 30
+
+
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+
+functions:
+
+
+  lambdaperfmatmul128:
+    name: ${self:custom.stage}-${self:service}-lambda-lambdaPerformanceMatmulGolang00128
+    handler: bin/matmul
+    memorySize: 128
+    timeout: ${self:custom.timeout}
+    events:
+      - http:
+          path: perf/matmul/128
+          method: post
