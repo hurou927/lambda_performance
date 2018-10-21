@@ -1,4 +1,4 @@
-# Survey LAMBDA Performance
+# LAMBDA Performance
 
 Lambda performance (computation power and network I/O) depends on memory-size.
 
