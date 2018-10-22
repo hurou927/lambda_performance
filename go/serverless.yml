@@ -52,5 +52,56 @@ functions:
     timeout: ${self:custom.timeout}
     events:
       - http:
-          path: perf/matmul/128
+          path: perf/matmul/00128
+          method: post
+
+  lambdaperfmatmul256:
+    name: ${self:custom.stage}-${self:service}-lambda-lambdaPerformanceMatmulGolang00256
+    handler: bin/matmul
+    memorySize: 256
+    timeout: ${self:custom.timeout}
+    events:
+      - http:
+          path: perf/matmul/00256
+          method: post
+
+  lambdaperfmatmul512:
+    name: ${self:custom.stage}-${self:service}-lambda-lambdaPerformanceMatmulGolang00512
+    handler: bin/matmul
+    memorySize: 512
+    timeout: ${self:custom.timeout}
+    events:
+      - http:
+          path: perf/matmul/00512
+          method: post
+
+  lambdaperfmatmul1024:
+    name: ${self:custom.stage}-${self:service}-lambda-lambdaPerformanceMatmulGolang01024
+    handler: bin/matmul
+    memorySize: 1024
+    timeout: ${self:custom.timeout}
+    events:
+      - http:
+          path: perf/matmul/01024
+          method: post
+
+  lambdaperfmatmul1536:
+    name: ${self:custom.stage}-${self:service}-lambda-lambdaPerformanceMatmulGolang01536
+    handler: bin/matmul
+    memorySize: 1536
+    timeout: ${self:custom.timeout}
+    events:
+      - http:
+          path: perf/matmul/01536
+          method: post
+
+
+  lambdaperfmatmul3008:
+    name: ${self:custom.stage}-${self:service}-lambda-lambdaPerformanceMatmulGolang03008
+    handler: bin/matmul
+    memorySize: 3008
+    timeout: ${self:custom.timeout}
+    events:
+      - http:
+          path: perf/matmul/03008
           method: post

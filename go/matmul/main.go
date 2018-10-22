@@ -4,7 +4,7 @@ import (
 	// "bytes"
 	"context"
 	"encoding/json"
-	"fmt"
+	// "fmt"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -16,7 +16,7 @@ import (
 // https://serverless.com/framework/docs/providers/aws/events/apigateway/#lambda-proxy-integration
 type Response events.APIGatewayProxyResponse
 
-const N int = 32
+const N int = 512
 
 func createResponse(statusCode int, bodyMap map[string]interface{}) ( Response, error ) {
 	
@@ -37,13 +37,30 @@ func createResponse(statusCode int, bodyMap map[string]interface{}) ( Response, 
 	}, nil
 }
 
-// Handler is our lambda handler invoked by the `lambda.Start` function call
+
 func Handler(ctx context.Context) (Response, error) {
 
-	fmt.Print("Hello");
-
+	// fmt.Print("Hello");
+	
+	A := [N*N] float64 {};
+	B := [N*N] float64 {};
+	C := [N*N] float64 {};
+	for k := 0; k < N*N; k++ {
+		A[k] = float64(k)
+		B[k] = float64(k)
+	}
+	for w := 0; w < N; w++ {
+		for h := 0; h < N ; h++ {
+			var tmp float64 = 0.0
+			for k := 0; k < N ; k++ {
+				tmp = tmp + A[k+h*N] * B[w+k*N]
+			}
+			C[w+h*N] = tmp
+		}
+	}
 	resp, resErr := createResponse(200, map[string]interface{}{
 		"message": "Go Serverless v1.0! Your function executed successfully!",
+		"value": C[0]+C[N*N-1],
 	})
 
 	return resp, resErr
