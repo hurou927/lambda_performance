@@ -22,12 +22,12 @@ lambdaPrefix='dev-generalTempJAVA-lambda-lambdaPerformanceMatmulJava'
 #     for ((i=0;i<N;i++)); do
 #         echo $i
 #         curl -s -X POST ${apiPrefix}$m | jq .
-#         sleep 1
+#         # sleep 1
 #     done
 # done
 
 
-unixTime=1540212349350
+unixTime=1540215426562
 for m in $memlist; do
     lambda=$lambdaPrefix$m
     stname=$(getLeastLogStreamName $lambda)

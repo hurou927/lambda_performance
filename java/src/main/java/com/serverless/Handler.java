@@ -16,8 +16,8 @@ public class Handler implements RequestHandler<Map<String, Object>, ApiGatewayRe
 	public ApiGatewayResponse handleRequest(Map<String, Object> input, Context context) {
 		LOG.info("received: " + input);
 
-		// final int N = 512;
-		int N = System.getenv("NNN");
+		final int N = 512;
+		// int N = System.getenv("NNN");
 		double A[] = new double [N*N];
 		double B[] = new double [N*N]; 
 		double C[] = new double [N*N];
@@ -40,9 +40,9 @@ public class Handler implements RequestHandler<Map<String, Object>, ApiGatewayRe
 		// HashMap<String, String> output = new HashMap<String, >();
 		// output.put("message","serverless java");
 		// output.put("value", new Double(C[0]+C[N*N-1]));
-		input.put("NNN", N));
-		input.put("value", C[0]+C[C[N*N-1]%100]);
-		Response responseBody = new Response("Go Serverless v1.x! Your function executed successfully!", output);
+		input.put("NNN", N);
+		input.put("value", C[0]+C[N*N-1]);
+		Response responseBody = new Response("Go Serverless v1.x! Your function executed successfully!", input);
 		return ApiGatewayResponse.builder()
 				.setStatusCode(200)
 				.setObjectBody(responseBody)
